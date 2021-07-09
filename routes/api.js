@@ -23,6 +23,6 @@ module.exports = function (app) {
     let returnNum = convertHandler.convert(initNum, initUnit);
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-    res.send({ initNum: parseFloat(initNum), initUnit, returnNum, returnUnit, string });
+    res.send({ initNum: parseFloat(initNum), initUnit, returnNum: parseFloat(returnNum), returnUnit, string });
   });
 };

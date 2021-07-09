@@ -82,7 +82,7 @@ function ConvertHandler() {
         result = initNum / miToKm;
         break;
     }
-    return Number(result).toFixed(5);
+    return result.toFixed(5);
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
