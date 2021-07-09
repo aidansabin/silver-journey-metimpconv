@@ -17,16 +17,16 @@ function ConvertHandler() {
   }
   this.getNum = function(input) {
     let result = input.match(/^[0-9]?.?[0-9]/);
-    return result;
+    return result[0];
   };
 
   this.getUnit = function(input) {
     let result = input.match(/[a-z]+/g);
-    return result;
+    return result[0];
   };
 
   this.getReturnUnit = function(initUnit) {
-    let result = unitPairs[initUnit[0]];
+    let result = unitPairs[initUnit];
     return result;
   };
 

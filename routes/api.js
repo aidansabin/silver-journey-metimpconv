@@ -14,5 +14,12 @@ module.exports = function (app) {
     let returnNum = convertHandler.convert(initNum, initUnit);
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+    res.send({
+      initNum: initNum,
+      initUnit: initUnit,
+      returnNum: returnNum,
+      returnUnit: returnUnit,
+      string: string
+    })
   })
 };
