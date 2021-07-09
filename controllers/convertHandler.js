@@ -15,14 +15,36 @@ function ConvertHandler() {
     "kg": "lbs",
     "lbs": "kg"
   }
+
+  this.checkFraction = function(input) {
+    if (input[0].split('/').length === 2) {
+      return true;
+    } else if (input[0].split('/').length > 2) {
+      return undefined;
+    } else {
+      return false;
+    }
+  }
+
   this.getNum = function(input) {
-    let result = input.match(/^[0-9]?.?[0-9]/);
-    return result[0];
+    let result = input.match(/[.\d\/]+/g) || ['1'];
+    if (this.checkFraction(result) === undefined) {
+      return undefined;
+    } else if (this.checkFraction(result)) {
+      let fraction = result[0].split('/');
+      return fraction[0] / fraction[1];
+    } else {
+      return result[0];
+    }
   };
 
   this.getUnit = function(input) {
-    let result = input.match(/[a-z]+/g);
-    return result[0];
+    let result = input.match(/[a-z]+/ig);
+    if (unitPhrases.hasOwnProperty(result[0])) {
+      return result[0];
+    } else {
+      return undefined;
+    }
   };
 
   this.getReturnUnit = function(initUnit) {
