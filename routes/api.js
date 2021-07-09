@@ -20,6 +20,13 @@ module.exports = function (app) {
       res.send('invalid unit');
     }
 
+    if (initUnit === 'l') {
+      initUnit = 'L';
+    }
+    if (returnUnit === 'l') {
+      returnUnit = 'L';
+    }
+
     let returnNum = convertHandler.convert(initNum, initUnit);
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
