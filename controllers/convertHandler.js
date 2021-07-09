@@ -3,15 +3,15 @@ function ConvertHandler() {
     "mi": "miles",
     "km": "kilometers",
     "gal": "gallons",
-    "L": "liters",
+    "l": "liters",
     "kg": "kilograms",
     "lbs": "pounds"
   }
   const unitPairs = {
     "mi": "km",
     "km": "mi",
-    "gal": "L",
-    "L": "gal",
+    "gal": "l",
+    "l": "gal",
     "kg": "lbs",
     "lbs": "kg"
   }
@@ -40,8 +40,8 @@ function ConvertHandler() {
 
   this.getUnit = function(input) {
     let result = input.match(/[a-z]+/ig);
-    if (unitPhrases.hasOwnProperty(result[0])) {
-      return result[0];
+    if (unitPhrases.hasOwnProperty(result[0].toLowerCase())) {
+      return result[0].toLowerCase();
     } else {
       return undefined;
     }
@@ -66,7 +66,7 @@ function ConvertHandler() {
       case "gal":
         result = initNum * galToL;
         break;
-      case "L":
+      case "l":
         result = initNum / galToL;
         break;
       case "lbs":

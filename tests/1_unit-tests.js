@@ -48,7 +48,7 @@ suite('Unit Tests', function() {
   suite('Function convertHandler.getUnit(input)', function() {
 
     test('Valid unit input', function(done) {
-      let input = ['mi', 'km', 'gal', 'L', 'lbs', 'kg'];
+      let input = ['mi', 'km', 'gal', 'l', 'lbs', 'kg'];
       input.forEach(val => assert.equal(convertHandler.getUnit(val), val));
       done();
     });
@@ -62,8 +62,8 @@ suite('Unit Tests', function() {
 
   suite('Function convertHandler.getReturnUnit(initUnit)', function() {
     test('Correct return unit', function(done) {
-      let input = ['mi', 'km', 'gal', 'L', 'lbs', 'kg'];
-      let result = ['km', 'mi', 'L', 'gal', 'kg', 'lbs'];
+      let input = ['mi', 'km', 'gal', 'l', 'lbs', 'kg'];
+      let result = ['km', 'mi', 'l', 'gal', 'kg', 'lbs'];
       input.forEach((val, i) => assert.equal(convertHandler.getReturnUnit(val), result[i]));
       done();
     });
@@ -71,7 +71,7 @@ suite('Unit Tests', function() {
 
   suite('Function convertHandler.spellOutUnit(unit)', function() {
     test('Correct spelled-out string', function(done) {
-      let input = ['mi', 'km', 'gal', 'L', 'lbs', 'kg'];
+      let input = ['mi', 'km', 'gal', 'l', 'lbs', 'kg'];
       let result = ['miles', 'kilometers', 'gallons', 'liters', 'pounds', 'kilograms'];
       input.forEach((val, i) => assert.equal(convertHandler.spellOutUnit(val), result[i]));
       done();
@@ -87,7 +87,7 @@ suite('Unit Tests', function() {
     });
 
     test('Convert L to gal', function(done) {
-      let input = ['32', 'L'];
+      let input = ['32', 'l'];
       assert.equal(convertHandler.convert(input[0], input[1]), 8.45351);
       done();
     });
