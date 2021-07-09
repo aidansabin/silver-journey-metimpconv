@@ -66,7 +66,7 @@ function ConvertHandler() {
       case "gal":
         result = initNum * galToL;
         break;
-      case "l":
+      case "L":
         result = initNum / galToL;
         break;
       case "lbs":
