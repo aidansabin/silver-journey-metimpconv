@@ -19,10 +19,10 @@ module.exports = function (app) {
     } else if (!initUnit) {
       res.send('Invalid unit');
     }
-    
+
     let returnNum = convertHandler.convert(initNum, initUnit);
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-    res.json({ initNum, initUnit, returnNum, returnUnit, string });
+    res.send({ initNum: parseFloat(initNum), initUnit, returnNum, returnUnit, string });
   });
 };
