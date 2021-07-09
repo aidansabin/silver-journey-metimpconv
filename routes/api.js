@@ -20,16 +20,17 @@ module.exports = function (app) {
       res.send('invalid unit');
     }
 
+    let returnNum = convertHandler.convert(initNum, initUnit);
+    let returnUnit = convertHandler.getReturnUnit(initUnit);
+    let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+
     if (initUnit === 'l') {
       initUnit = 'L';
     }
     if (returnUnit === 'l') {
       returnUnit = 'L';
     }
-
-    let returnNum = convertHandler.convert(initNum, initUnit);
-    let returnUnit = convertHandler.getReturnUnit(initUnit);
-    let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+    
     res.send({ initNum: parseFloat(initNum), initUnit, returnNum: parseFloat(returnNum), returnUnit, string });
   });
 };
