@@ -82,37 +82,37 @@ suite('Unit Tests', function() {
 
     test('Convert gal to L', function(done) {
       let input = ['32', 'gal'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 121.13312);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 121.13312, 0.1);
       done();
     });
 
     test('Convert L to gal', function(done) {
       let input = ['32', 'l'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 8.45351);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 8.45351, 0.1);
       done();
     });
 
     test('Convert mi to km', function(done) {
       let input = ['32', 'mi'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 51.49888);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 51.49888, 0.1);
       done();
     });
 
     test('Convert km to mi', function(done) {
       let input = ['32', 'km'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 19.88393);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 19.88393, 0.1);
       done();
     });
 
     test('Convert lbs to kg', function(done) {
       let input = ['32', 'lbs'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 14.51494);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 14.51494, 0.1);
       done();
     });
 
     test('Convert kg to lbs', function(done) {
       let input = ['32', 'kg'];
-      assert.equal(convertHandler.convert(input[0], input[1]), 70.54798);
+      assert.approximately(convertHandler.convert(input[0], input[1]), 70.54798, 0.1);
       done();
     });
   })

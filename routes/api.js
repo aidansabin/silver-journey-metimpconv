@@ -19,6 +19,7 @@ module.exports = function (app) {
     } else if (!initUnit) {
       return res.send('invalid unit');
     } else {
+      console.log("hello");
       let returnNum = convertHandler.convert(initNum, initUnit);
       let returnUnit = convertHandler.getReturnUnit(initUnit);
       let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
