@@ -11,7 +11,11 @@ module.exports = function (app) {
     let input = req.query.input;
     let number = input.match(/[.\d\/]+/g) || [''];
     let unit = input.match(/[a-z]+/ig) || undefined;
+    console.log(unit);
     //catch some invalid inputs
+    if (!unit) {
+      return res.send('invalid unit');
+    }
     if (number.length > 1 && unit.length > 1) {
       return res.send('invalid number and unit');
     } else if (number.length > 1) {
