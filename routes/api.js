@@ -18,19 +18,17 @@ module.exports = function (app) {
       return res.send('invalid number');
     } else if (!initUnit) {
       return res.send('invalid unit');
+    } else {
+      let returnNum = convertHandler.convert(initNum, initUnit);
+      let returnUnit = convertHandler.getReturnUnit(initUnit);
+      let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+      if (initUnit === 'l') {
+        initUnit = 'L';
+      }
+      if (returnUnit === 'l') {
+        returnUnit = 'L';
+      }
+      return res.send({ initNum: parseFloat(initNum), initUnit, returnNum: parseFloat(returnNum), returnUnit, string });
     }
-
-    let returnNum = convertHandler.convert(initNum, initUnit);
-    let returnUnit = convertHandler.getReturnUnit(initUnit);
-    let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-
-    if (initUnit === 'l') {
-      initUnit = 'L';
-    }
-    if (returnUnit === 'l') {
-      returnUnit = 'L';
-    }
-
-    return res.send({ initNum: parseFloat(initNum), initUnit, returnNum: parseFloat(returnNum), returnUnit, string });
   });
 };
