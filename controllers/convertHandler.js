@@ -36,7 +36,7 @@ function ConvertHandler() {
       let fraction = input[0].split('/');
       return fraction[0] / fraction[1];
     } else {
-      return input[0];
+      return Number(input[0]);
     }
   };
 
