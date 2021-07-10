@@ -9,27 +9,43 @@ module.exports = function (app) {
 
   app.route('/api/convert').get((req, res) => {
     let input = req.query.input;
-    let initNum = convertHandler.getNum(input);
-    let initUnit = convertHandler.getUnit(input);
-
-    if (!initNum && !initUnit) {
+    let number = input.match(/[.\d\/]+/g) || [''];
+    let unit = input.match(/[a-z]+/ig) || undefined;
+    //catch some invalid inputs
+    if (number.length > 1 && unit.length > 1) {
       return res.send('invalid number and unit');
-    } else if (!initNum) {
+    } else if (number.length > 1) {
       return res.send('invalid number');
-    } else if (!initUnit) {
+    } else if (unit.length > 1) {
       return res.send('invalid unit');
     } else {
-      console.log("hello");
-      let returnNum = convertHandler.convert(initNum, initUnit);
-      let returnUnit = convertHandler.getReturnUnit(initUnit);
-      let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-      if (initUnit === 'l') {
-        initUnit = 'L';
+      let initNum = convertHandler.getNum(number);
+      let initUnit = convertHandler.getUnit(unit);
+
+      //catch some invalid inputs
+      if (!initNum && !initUnit) {
+        return res.send('invalid number and unit');
+      } else if (!initNum) {
+        return res.send('invalid number');
+      } else if (!initUnit) {
+        return res.send('invalid unit');
+      } else {
+        let returnNum = convertHandler.convert(initNum, initUnit);
+        let returnUnit = convertHandler.getReturnUnit(initUnit);
+        let string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+
+        //capitalise 'l'
+        if (initUnit === 'l') {
+          initUnit = 'L';
+        }
+        if (returnUnit === 'l') {
+          returnUnit = 'L';
+        }
+
+        return res.send({ initNum, initUnit, returnNum, returnUnit, string });
       }
-      if (returnUnit === 'l') {
-        returnUnit = 'L';
-      }
-      return res.send({ initNum: parseFloat(initNum), initUnit, returnNum: parseFloat(returnNum), returnUnit, string });
     }
+
+
   });
 };

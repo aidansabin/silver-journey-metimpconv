@@ -17,9 +17,9 @@ function ConvertHandler() {
   }
 
   this.checkFraction = function(input) {
-    if (input[0].split('/').length === 2) {
+    if (input.split('/').length === 2) {
       return true;
-    } else if (input[0].split('/').length > 2) {
+    } else if (input.split('/').length > 2) {
       return undefined;
     } else {
       return false;
@@ -27,23 +27,24 @@ function ConvertHandler() {
   }
 
   this.getNum = function(input) {
-    let result = input.match(/[.\d\/]+/g) || ['1'];
-    if (this.checkFraction(result) === undefined) {
+    if (input[0] === '') {
+      input[0] = '1';
+    }
+    if (this.checkFraction(input[0]) === undefined) {
       return undefined;
-    } else if (this.checkFraction(result)) {
-      let fraction = result[0].split('/');
+    } else if (this.checkFraction(input[0])) {
+      let fraction = input[0].split('/');
       return fraction[0] / fraction[1];
     } else {
-      return result[0];
+      return input[0];
     }
   };
 
   this.getUnit = function(input) {
-    let result = input.match(/[a-z]+/ig) || undefined;
-    if (result === undefined) {
+    if (input === undefined) {
       return undefined;
     }
-    switch(result[0].toLowerCase()) {
+    switch(input[0].toLowerCase()) {
       case "gal":
         return "gal";
       case "l":
