@@ -39,11 +39,25 @@ function ConvertHandler() {
   };
 
   this.getUnit = function(input) {
-    let result = input.match(/[a-z]+/ig);
-    if (unitPhrases.hasOwnProperty(result[0].toLowerCase())) {
-      return result[0].toLowerCase();
-    } else {
+    let result = input.match(/[a-z]+/ig) || undefined;
+    if (result === undefined) {
       return undefined;
+    }
+    switch(result[0].toLowerCase()) {
+      case "gal":
+        return "gal";
+      case "l":
+        return "l";
+      case "lbs":
+        return "lbs";
+      case "kg":
+        return "kg";
+      case "mi":
+        return "mi";
+      case "km":
+        return "km";
+      default:
+        return undefined;
     }
   };
 
